@@ -1,0 +1,2 @@
+bin/@GAPARCH@/glpkinterface_main.so: bin/@GAPARCH@/glpkinterface_main.o bin/@GAPARCH@/GLPK_data.o
+	$(CXX) -fPIC -Wall -O0 -g -shared @EXTRA_COPTS@ -o bin/@GAPARCH@/glpkinterface_main.so bin/@GAPARCH@/glpkinterface_main.o -L$(GAPPATH)/bin/@GAPARCH@/extern/gmp/lib -lgmp -lglpk
