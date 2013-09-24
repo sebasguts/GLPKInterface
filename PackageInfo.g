@@ -4,7 +4,7 @@ PackageName := "GLPKInterface",
 
 Subtitle := "TODO",
 
-Version := "0.1",
+Version := "2013.09.25",
 
 Date := "23/09/2013",
 

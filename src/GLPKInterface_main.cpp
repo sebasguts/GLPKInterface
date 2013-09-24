@@ -73,13 +73,13 @@ Obj FuncGLPK_SET_ROW_BOUNDS( Obj self, Obj problem, Obj row_number, Obj lower, O
     
 }
 
-Obj FuncGLPK_SET_UPPER_ROW_BOUNDS( Obj self, Obj problem, Obj row_number, Obj upper ){
+Obj FuncGLPK_SET_UPPER_ROW_BOUND( Obj self, Obj problem, Obj row_number, Obj upper ){
     
     return real_GLPK_set_row_bounds( problem, row_number, upper, upper, GLP_UP);
     
 }
 
-Obj FuncGLPK_SET_LOWER_ROW_BOUNDS( Obj self, Obj problem, Obj row_number, Obj lower ){
+Obj FuncGLPK_SET_LOWER_ROW_BOUND( Obj self, Obj problem, Obj row_number, Obj lower ){
     
     return real_GLPK_set_row_bounds( problem, row_number, lower, lower, GLP_LO );
     
@@ -97,13 +97,13 @@ Obj FuncGLPK_SET_COLUMN_BOUNDS( Obj self, Obj problem, Obj col_number, Obj lower
     
 }
 
-Obj FuncGLPK_SET_UPPER_COLUMN_BOUNDS( Obj self, Obj problem, Obj col_number, Obj upper ){
+Obj FuncGLPK_SET_UPPER_COLUMN_BOUND( Obj self, Obj problem, Obj col_number, Obj upper ){
     
     return real_GLPK_set_col_bounds( problem, col_number, upper, upper, GLP_UP);
     
 }
 
-Obj FuncGLPK_SET_LOWER_COLUMN_BOUNDS( Obj self, Obj problem, Obj col_number, Obj lower ){
+Obj FuncGLPK_SET_LOWER_COLUMN_BOUND( Obj self, Obj problem, Obj col_number, Obj lower ){
     
     return real_GLPK_set_col_bounds( problem, col_number, lower, lower, GLP_LO );
     
@@ -118,6 +118,30 @@ Obj FuncGLPK_SET_FIXED_COLUMN_VALUE( Obj self, Obj problem, Obj col_number, Obj 
 Obj FuncGLPK_SET_OBJECT_COEFF( Obj self, Obj problem, Obj col_number, Obj coeff ){
     
     return real_GLPK_set_obj_coeff( problem, col_number, coeff );
+    
+}
+
+Obj FuncGLPK_SET_COEFF_MATRIX( Obj self, Obj problem, Obj matrix ){
+    
+    return real_GLPK_set_coeff_matrix( problem, matrix );
+    
+}
+
+Obj FuncGLPK_SOLVE_PROBLEM( Obj self, Obj problem ){
+    
+    return real_GLPK_solve_problem( problem );
+    
+}
+
+Obj FuncGLPK_OPTIMAL_VALUE( Obj self, Obj problem ){
+    
+    return real_GLPK_optimal_value( problem );
+    
+}
+
+Obj FuncGLPK_OPTIMAL_SOLUTION( Obj self, Obj problem ){
+    
+    return real_GLPK_optimal_solution( problem );
     
 }
 
@@ -151,13 +175,13 @@ static StructGVarFunc GVarFuncs [] = {
     (Obj(*)())FuncGLPK_SET_ROW_BOUNDS,
     "GLPKInterface_main.cpp:GLPK_SET_ROW_BOUNDS" },
     
-    { "GLPK_SET_LOWER_ROW_BOUNDS", 3, "problem,row_number,lower",
-    (Obj(*)())FuncGLPK_SET_LOWER_ROW_BOUNDS,
-    "GLPKInterface_main.cpp:GLPK_SET_LOWER_ROW_BOUNDS" },
+    { "GLPK_SET_LOWER_ROW_BOUND", 3, "problem,row_number,lower",
+    (Obj(*)())FuncGLPK_SET_LOWER_ROW_BOUND,
+    "GLPKInterface_main.cpp:GLPK_SET_LOWER_ROW_BOUND" },
     
-    { "GLPK_SET_UPPER_ROW_BOUNDS", 3, "problem,row_number,upper",
-    (Obj(*)())FuncGLPK_SET_UPPER_ROW_BOUNDS,
-    "GLPKInterface_main.cpp:GLPK_SET_UPPER_ROW_BOUNDS" },
+    { "GLPK_SET_UPPER_ROW_BOUND", 3, "problem,row_number,upper",
+    (Obj(*)())FuncGLPK_SET_UPPER_ROW_BOUND,
+    "GLPKInterface_main.cpp:GLPK_SET_UPPER_ROW_BOUND" },
     
     { "GLPK_SET_FIXED_ROW_VALUE", 3, "problem,row_number,value",
     (Obj(*)())FuncGLPK_SET_FIXED_ROW_VALUE,
@@ -167,17 +191,37 @@ static StructGVarFunc GVarFuncs [] = {
     (Obj(*)())FuncGLPK_SET_COLUMN_BOUNDS,
     "GLPKInterface_main.cpp:GLPK_SET_COLUMN_BOUNDS" },
     
-    { "GLPK_SET_LOWER_COLUMN_BOUNDS", 3, "problem,col_number,lower",
-    (Obj(*)())FuncGLPK_SET_LOWER_COLUMN_BOUNDS,
-    "GLPKInterface_main.cpp:GLPK_SET_LOWER_COLUMN_BOUNDS" },
+    { "GLPK_SET_LOWER_COLUMN_BOUND", 3, "problem,col_number,lower",
+    (Obj(*)())FuncGLPK_SET_LOWER_COLUMN_BOUND,
+    "GLPKInterface_main.cpp:GLPK_SET_LOWER_COLUMN_BOUND" },
     
-    { "GLPK_SET_UPPER_COLUMN_BOUNDS", 3, "problem,col_number,upper",
-    (Obj(*)())FuncGLPK_SET_UPPER_COLUMN_BOUNDS,
-    "GLPKInterface_main.cpp:GLPK_SET_UPPER_COLUMN_BOUNDS" },
+    { "GLPK_SET_UPPER_COLUMN_BOUND", 3, "problem,col_number,upper",
+    (Obj(*)())FuncGLPK_SET_UPPER_COLUMN_BOUND,
+    "GLPKInterface_main.cpp:GLPK_SET_UPPER_COLUMN_BOUND" },
     
     { "GLPK_SET_FIXED_COLUMN_VALUE", 3, "problem,col_number,value",
     (Obj(*)())FuncGLPK_SET_FIXED_COLUMN_VALUE,
     "GLPKInterface_main.cpp:GLPK_SET_FIXED_COLUMN_VALUE" },
+    
+    { "GLPK_SET_OBJECT_COEFF", 3, "problem,col_number,coeff",
+    (Obj(*)())FuncGLPK_SET_OBJECT_COEFF,
+    "GLPKInterface_main.cpp:GLPK_SET_OBJECT_COEFF" },
+    
+    { "GLPK_SET_COEFF_MATRIX", 2, "problem,matrix",
+    (Obj(*)())FuncGLPK_SET_COEFF_MATRIX,
+    "GLPKInterface_main.cpp:GLPK_SET_COEFF_MATRIX" },
+    
+    { "GLPK_SOLVE_PROBLEM", 1, "problem",
+    (Obj(*)())FuncGLPK_SOLVE_PROBLEM,
+    "GLPKInterface_main.cpp:GLPK_SOLVE_PROBLEM" },
+    
+    { "GLPK_OPTIMAL_VALUE", 1, "problem",
+    (Obj(*)())FuncGLPK_OPTIMAL_VALUE,
+    "GLPKInterface_main.cpp:GLPK_OPTIMAL_VALUE" },
+    
+    { "GLPK_OPTIMAL_SOLUTION", 1, "problem",
+    (Obj(*)())FuncGLPK_OPTIMAL_SOLUTION,
+    "GLPKInterface_main.cpp:GLPK_OPTIMAL_SOLUTION" },
     
   { 0 }
 };
