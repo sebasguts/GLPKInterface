@@ -15,6 +15,11 @@ bin/@GAPARCH@/GLPK_data.o: src/GLPK_data.cpp src/GLPK_data.h src/loadgap.h
 	cp $(GAPPATH)/bin/@GAPARCH@/config.h bin/@GAPARCH@/
 	$(CXX) -fPIC -Wall -O0 -g -pipe @EXTRA_COPTS@ -o bin/@GAPARCH@/GLPK_data.o -I$(GAPPATH)/bin/@GAPARCH@/extern/gmp/include -I$(GAPPATH)/bin/@GAPARCH@/../.. -I$(GAPPATH)/bin/@GAPARCH@ -DCONFIG_H -c src/GLPK_data.cpp
 
+bin/@GAPARCH@/GLPK_tools.o: src/GLPK_tools.h src/GLPK_tools.cpp src/GLPK_data.h src/GLPK_data.h src/loadgap.h
+	cp $(GAPPATH)/bin/@GAPARCH@/config.h bin/@GAPARCH@/
+	$(CXX) -fPIC -Wall -O0 -g -pipe @EXTRA_COPTS@ -o bin/@GAPARCH@/GLPK_tools.o -I$(GAPPATH)/bin/@GAPARCH@/extern/gmp/include -I$(GAPPATH)/bin/@GAPARCH@/../.. -I$(GAPPATH)/bin/@GAPARCH@ -DCONFIG_H -c src/GLPK_tools.cpp
+
+
 bin/@GAPARCH@/glpkinterface_main.o: src/GLPKInterface_main.cpp
 	cp $(GAPPATH)/bin/@GAPARCH@/config.h bin/@GAPARCH@/
 	$(CXX) -fPIC -Wall -O2 -g -pipe @EXTRA_COPTS@ -o bin/@GAPARCH@/glpkinterface_main.o -I$(GAPPATH)/bin/@GAPARCH@/extern/gmp/include -I$(GAPPATH)/bin/@GAPARCH@/../.. -I$(GAPPATH)/bin/@GAPARCH@ -DCONFIG_H -c src/GLPKInterface_main.cpp

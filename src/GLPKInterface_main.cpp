@@ -22,6 +22,8 @@ static const char * Revision_glpk_main_c =
 
 #include "GLPK_data.h"
 
+#include "GLPK_tools.h"
+
 using std::cerr;
 using std::endl;
 using std::string;
@@ -31,16 +33,32 @@ using std::pair;
 Obj TheTypeExternalGLPKObject;
 Obj TheTypeExternalGLPKProblem;
 
-Obj FuncCreateGLPKProblem( Obj self ) {
-  
-  glp_prob * test = glp_create_prob();
+Obj FuncGLPK_CREATE_PROBLEM( Obj self ) {
   
   Obj ret_val = NewGLPKProblem( T_GLPK_EXTERNAL_PROBLEM );
   
-  GLPKOBJ_SET_PROBOBJ(ret_val, test);
+  GLPKOBJ_SET_PROBOBJ(ret_val, glp_create_prob() );
   
   return ret_val;
 
+}
+
+Obj FuncGLPK_ADD_ROWS( Obj self, Obj problem, Obj rows ){
+    
+    return real_GLPK_add_rows( problem, rows );
+    
+}
+
+Obj FuncGLPK_SET_MAX_PROBLEM( Obj self, Obj problem ){
+    
+    return real_GLPK_set_max( problem );
+    
+}
+
+Obj FuncGLPK_SET_MIN_PROBLEM( Obj self, Obj problem ){
+    
+    return real_GLPK_set_min( problem );
+    
 }
 
 
@@ -49,9 +67,21 @@ Obj FuncCreateGLPKProblem( Obj self ) {
 */
 static StructGVarFunc GVarFuncs [] = {
 
-    { "CreateGLPKProblem", 0, "",
-    (Obj(*)())FuncCreateGLPKProblem,
-    "GLPKInterface_main.cpp:CreateGLPKProblem" },
+    { "GLPK_CREATE_PROBLEM", 0, "",
+    (Obj(*)())FuncGLPK_CREATE_PROBLEM,
+    "GLPKInterface_main.cpp:GLPK_CREATE_PROBLEM" },
+
+    { "GLPK_ADD_ROWS", 2, "problem,rows",
+    (Obj(*)())FuncGLPK_ADD_ROWS,
+    "GLPKInterface_main.cpp:GLPK_ADD_ROWS" },
+    
+    { "GLPK_SET_MAX_PROBLEM", 1, "problem",
+    (Obj(*)())FuncGLPK_SET_MAX_PROBLEM,
+    "GLPKInterface_main.cpp:GLPK_SET_MAX_PROBLEM" },
+    
+    { "GLPK_SET_MIN_PROBLEM", 1, "problem",
+    (Obj(*)())FuncGLPK_SET_MIN_PROBLEM,
+    "GLPKInterface_main.cpp:GLPK_SET_MIN_PROBLEM" },
     
   { 0 }
 };
