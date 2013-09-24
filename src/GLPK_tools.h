@@ -4,6 +4,8 @@
 
 Obj real_GLPK_add_rows( Obj, Obj );
 
+Obj real_GLPK_add_columns( Obj, Obj );
+
 Obj real_GLPK_set_max( Obj );
 
 Obj real_GLPK_set_min( Obj );

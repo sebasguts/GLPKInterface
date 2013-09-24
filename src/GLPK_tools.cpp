@@ -4,18 +4,35 @@
 
 Obj real_GLPK_add_rows( Obj problem_obj, Obj nr_rows ){
   
-  if( ! IS_GLPK_PROBLEM(problem_obj) || ! IS_INTOBJ(nr_rows) ){
+  if( ! IS_INTOBJ(nr_rows) ){
       ErrorMayQuit( "incorrect input", 0, 0 );
       return False;
   }
   
-  glp_prob* problem = PROBOBJ_GLPKOBJ( problem_obj );
+  glp_prob* problem = convert_and_check_probobj( problem_obj );
   
   int nr_rows_int = INT_INTOBJ( nr_rows );
   
   int current_first_row = glp_add_rows( problem, nr_rows_int );
   
   return INTOBJ_INT( current_first_row );
+  
+}
+
+Obj real_GLPK_add_columns( Obj problem_obj, Obj nr_cols ){
+  
+  if( ! IS_INTOBJ(nr_cols) ){
+      ErrorMayQuit( "incorrect input", 0, 0 );
+      return False;
+  }
+  
+  glp_prob* problem = convert_and_check_probobj( problem_obj );
+  
+  int nr_cols_int = INT_INTOBJ( nr_cols );
+  
+  int current_first_col = glp_add_cols( problem, nr_cols_int );
+  
+  return INTOBJ_INT( current_first_col );
   
 }
 

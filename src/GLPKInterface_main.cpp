@@ -49,6 +49,12 @@ Obj FuncGLPK_ADD_ROWS( Obj self, Obj problem, Obj rows ){
     
 }
 
+Obj FuncGLPK_ADD_COLUMNS( Obj self, Obj problem, Obj cols ){
+    
+    return real_GLPK_add_columns( problem, cols );
+    
+}
+
 Obj FuncGLPK_SET_MAX_PROBLEM( Obj self, Obj problem ){
     
     return real_GLPK_set_max( problem );
@@ -74,6 +80,10 @@ static StructGVarFunc GVarFuncs [] = {
     { "GLPK_ADD_ROWS", 2, "problem,rows",
     (Obj(*)())FuncGLPK_ADD_ROWS,
     "GLPKInterface_main.cpp:GLPK_ADD_ROWS" },
+    
+    { "GLPK_ADD_COLUMNS", 2, "problem,cols",
+    (Obj(*)())FuncGLPK_ADD_COLUMNS,
+    "GLPKInterface_main.cpp:GLPK_ADD_COLUMNS" },
     
     { "GLPK_SET_MAX_PROBLEM", 1, "problem",
     (Obj(*)())FuncGLPK_SET_MAX_PROBLEM,
