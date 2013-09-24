@@ -94,6 +94,21 @@ Obj real_GLPK_set_col_bounds( Obj problem_obj, Obj col_number, Obj lower_bound, 
   
 }
 
+Obj real_GLPK_set_obj_coeff( Obj problem_obj, Obj col_number_obj, Obj coeff_obj ){
+  
+  if( ! IS_INTOBJ( col_number_obj ) || ! IS_INTOBJ( coeff_obj ) )
+      ErrorMayQuit( "arguments must be integers", 0, 0 );
+  
+  glp_prob* problem = convert_and_check_probobj( problem_obj );
+  
+  double coeff = static_cast<double>( INT_INTOBJ( coeff_obj ) );
+  
+  int col_number = INT_INTOBJ( col_number_obj );
+  
+  glp_set_obj_coef( problem, col_number, coeff );
+  
+}
+
 // Non-transvered tool functions
 
 glp_prob* convert_and_check_probobj( Obj problem_obj ){

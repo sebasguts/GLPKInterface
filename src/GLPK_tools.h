@@ -14,6 +14,8 @@ Obj real_GLPK_set_row_bounds( Obj, Obj, Obj, Obj, int );
 
 Obj real_GLPK_set_col_bounds( Obj, Obj, Obj, Obj, int );
 
+Obj real_GLPK_set_obj_coeff( Obj, Obj, Obj );
+
 //non-transvered tool functions
 
 glp_prob* convert_and_check_probobj( Obj );

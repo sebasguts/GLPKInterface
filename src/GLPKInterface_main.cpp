@@ -91,7 +91,7 @@ Obj FuncGLPK_SET_FIXED_ROW_VALUE( Obj self, Obj problem, Obj row_number, Obj val
     
 }
 
-Obj FuncGLPK_SET_COLUMN_BOUNDS( Obj self, Obj problem, Obj row_number, Obj lower, Obj upper ){
+Obj FuncGLPK_SET_COLUMN_BOUNDS( Obj self, Obj problem, Obj col_number, Obj lower, Obj upper ){
     
     return real_GLPK_set_col_bounds( problem, col_number, lower, upper, GLP_DB );
     
@@ -112,6 +112,12 @@ Obj FuncGLPK_SET_LOWER_COLUMN_BOUNDS( Obj self, Obj problem, Obj col_number, Obj
 Obj FuncGLPK_SET_FIXED_COLUMN_VALUE( Obj self, Obj problem, Obj col_number, Obj value ){
     
     return real_GLPK_set_col_bounds( problem, col_number, value, value, GLP_FX );
+    
+}
+
+Obj FuncGLPK_SET_OBJECT_COEFF( Obj self, Obj problem, Obj col_number, Obj coeff ){
+    
+    return real_GLPK_set_obj_coeff( problem, col_number, coeff );
     
 }
 
