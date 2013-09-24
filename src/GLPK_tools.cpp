@@ -56,7 +56,43 @@ Obj real_GLPK_set_min( Obj problem_obj ){
   
 }
 
+Obj real_GLPK_set_row_bounds( Obj problem_obj, Obj row_number, Obj lower_bound, Obj upper_bound, int type ){
+  
+  if( ! IS_INTOBJ( lower_bound ) || ! IS_INTOBJ( upper_bound ) || ! IS_INTOBJ( row_number ) )
+      ErrorMayQuit( "arguments must be integers", 0, 0 );
+  
+  glp_prob* problem = convert_and_check_probobj( problem_obj );
+  
+  double lower = static_cast<double>( INT_INTOBJ( lower_bound ) );
+  
+  double upper = static_cast<double>( INT_INTOBJ( upper_bound ) );
+  
+  int row = INT_INTOBJ( row_number );
+  
+  glp_set_row_bnds( problem, row, type, lower, upper );
+  
+  return True;
+  
+}
 
+Obj real_GLPK_set_col_bounds( Obj problem_obj, Obj col_number, Obj lower_bound, Obj upper_bound, int type ){
+  
+  if( ! IS_INTOBJ( lower_bound ) || ! IS_INTOBJ( upper_bound ) || ! IS_INTOBJ( col_number ) )
+      ErrorMayQuit( "arguments must be integers", 0, 0 );
+  
+  glp_prob* problem = convert_and_check_probobj( problem_obj );
+  
+  double lower = static_cast<double>( INT_INTOBJ( lower_bound ) );
+  
+  double upper = static_cast<double>( INT_INTOBJ( upper_bound ) );
+  
+  int col = INT_INTOBJ( col_number );
+  
+  glp_set_col_bnds( problem, col, type, lower, upper );
+  
+  return True;
+  
+}
 
 // Non-transvered tool functions
 

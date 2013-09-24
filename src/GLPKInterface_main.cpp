@@ -67,6 +67,54 @@ Obj FuncGLPK_SET_MIN_PROBLEM( Obj self, Obj problem ){
     
 }
 
+Obj FuncGLPK_SET_ROW_BOUNDS( Obj self, Obj problem, Obj row_number, Obj lower, Obj upper ){
+    
+    return real_GLPK_set_row_bounds( problem, row_number, lower, upper, GLP_DB );
+    
+}
+
+Obj FuncGLPK_SET_UPPER_ROW_BOUNDS( Obj self, Obj problem, Obj row_number, Obj upper ){
+    
+    return real_GLPK_set_row_bounds( problem, row_number, upper, upper, GLP_UP);
+    
+}
+
+Obj FuncGLPK_SET_LOWER_ROW_BOUNDS( Obj self, Obj problem, Obj row_number, Obj lower ){
+    
+    return real_GLPK_set_row_bounds( problem, row_number, lower, lower, GLP_LO );
+    
+}
+
+Obj FuncGLPK_SET_FIXED_ROW_VALUE( Obj self, Obj problem, Obj row_number, Obj value ){
+    
+    return real_GLPK_set_row_bounds( problem, row_number, value, value, GLP_FX );
+    
+}
+
+Obj FuncGLPK_SET_COLUMN_BOUNDS( Obj self, Obj problem, Obj row_number, Obj lower, Obj upper ){
+    
+    return real_GLPK_set_col_bounds( problem, col_number, lower, upper, GLP_DB );
+    
+}
+
+Obj FuncGLPK_SET_UPPER_COLUMN_BOUNDS( Obj self, Obj problem, Obj col_number, Obj upper ){
+    
+    return real_GLPK_set_col_bounds( problem, col_number, upper, upper, GLP_UP);
+    
+}
+
+Obj FuncGLPK_SET_LOWER_COLUMN_BOUNDS( Obj self, Obj problem, Obj col_number, Obj lower ){
+    
+    return real_GLPK_set_col_bounds( problem, col_number, lower, lower, GLP_LO );
+    
+}
+
+Obj FuncGLPK_SET_FIXED_COLUMN_VALUE( Obj self, Obj problem, Obj col_number, Obj value ){
+    
+    return real_GLPK_set_col_bounds( problem, col_number, value, value, GLP_FX );
+    
+}
+
 
 /******************************************************************************
 *V  GVarFuncs . . . . . . . . . . . . . . . . . . list of functions to export
@@ -92,6 +140,38 @@ static StructGVarFunc GVarFuncs [] = {
     { "GLPK_SET_MIN_PROBLEM", 1, "problem",
     (Obj(*)())FuncGLPK_SET_MIN_PROBLEM,
     "GLPKInterface_main.cpp:GLPK_SET_MIN_PROBLEM" },
+    
+    { "GLPK_SET_ROW_BOUNDS", 4, "problem,row_number,lower,upper",
+    (Obj(*)())FuncGLPK_SET_ROW_BOUNDS,
+    "GLPKInterface_main.cpp:GLPK_SET_ROW_BOUNDS" },
+    
+    { "GLPK_SET_LOWER_ROW_BOUNDS", 3, "problem,row_number,lower",
+    (Obj(*)())FuncGLPK_SET_LOWER_ROW_BOUNDS,
+    "GLPKInterface_main.cpp:GLPK_SET_LOWER_ROW_BOUNDS" },
+    
+    { "GLPK_SET_UPPER_ROW_BOUNDS", 3, "problem,row_number,upper",
+    (Obj(*)())FuncGLPK_SET_UPPER_ROW_BOUNDS,
+    "GLPKInterface_main.cpp:GLPK_SET_UPPER_ROW_BOUNDS" },
+    
+    { "GLPK_SET_FIXED_ROW_VALUE", 3, "problem,row_number,value",
+    (Obj(*)())FuncGLPK_SET_FIXED_ROW_VALUE,
+    "GLPKInterface_main.cpp:GLPK_SET_FIXED_ROW_VALUE" },
+    
+    { "GLPK_SET_COLUMN_BOUNDS", 4, "problem,col_number,lower,upper",
+    (Obj(*)())FuncGLPK_SET_COLUMN_BOUNDS,
+    "GLPKInterface_main.cpp:GLPK_SET_COLUMN_BOUNDS" },
+    
+    { "GLPK_SET_LOWER_COLUMN_BOUNDS", 3, "problem,col_number,lower",
+    (Obj(*)())FuncGLPK_SET_LOWER_COLUMN_BOUNDS,
+    "GLPKInterface_main.cpp:GLPK_SET_LOWER_COLUMN_BOUNDS" },
+    
+    { "GLPK_SET_UPPER_COLUMN_BOUNDS", 3, "problem,col_number,upper",
+    (Obj(*)())FuncGLPK_SET_UPPER_COLUMN_BOUNDS,
+    "GLPKInterface_main.cpp:GLPK_SET_UPPER_COLUMN_BOUNDS" },
+    
+    { "GLPK_SET_FIXED_COLUMN_VALUE", 3, "problem,col_number,value",
+    (Obj(*)())FuncGLPK_SET_FIXED_COLUMN_VALUE,
+    "GLPKInterface_main.cpp:GLPK_SET_FIXED_COLUMN_VALUE" },
     
   { 0 }
 };

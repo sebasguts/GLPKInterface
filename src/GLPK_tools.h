@@ -10,6 +10,10 @@ Obj real_GLPK_set_max( Obj );
 
 Obj real_GLPK_set_min( Obj );
 
+Obj real_GLPK_set_row_bounds( Obj, Obj, Obj, Obj, int );
+
+Obj real_GLPK_set_col_bounds( Obj, Obj, Obj, Obj, int );
+
 //non-transvered tool functions
 
 glp_prob* convert_and_check_probobj( Obj );
