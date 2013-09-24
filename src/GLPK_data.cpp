@@ -20,7 +20,7 @@ Obj NewGLPKProblem(enum glpk_object_type t) {
 void ExternalGLPKObjectFreeFunc(Obj o) {
   glp_prob* p = PROBOBJ_GLPKOBJ(o);
   if(p != NULL)
-    delete p;
+    glp_delete_prob(p);
 }
 
 /* Type object function for the object */
