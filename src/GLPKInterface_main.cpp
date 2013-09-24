@@ -31,7 +31,7 @@ using std::pair;
 Obj TheTypeExternalGLPKObject;
 Obj TheTypeExternalGLPKProblem;
 
-Obj FuncDummyFunc( Obj self ) {
+Obj FuncCreateGLPKProblem( Obj self ) {
   
   glp_prob * test = glp_create_prob();
   
@@ -49,9 +49,9 @@ Obj FuncDummyFunc( Obj self ) {
 */
 static StructGVarFunc GVarFuncs [] = {
 
-    { "DummyFunc", 0, "",
-    (Obj(*)())FuncDummyFunc,
-    "GLPKInterface_main.cpp:DummyFunc" },
+    { "CreateGLPKProblem", 0, "",
+    (Obj(*)())FuncCreateGLPKProblem,
+    "GLPKInterface_main.cpp:CreateGLPKProblem" },
     
   { 0 }
 };
