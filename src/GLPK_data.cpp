@@ -3,10 +3,10 @@
 extern Obj TheTypeExternalGLPKProblem;
 
 
-Obj NewPolymakeExternalObject(enum glpk_object_type t) {
+Obj NewGLPKProblem(enum glpk_object_type t) {
   Obj o;
   o = NewBag(T_SPARE1, 2*sizeof(Obj));
- 
+
   switch(t) {
     case T_GLPK_EXTERNAL_PROBLEM:
       ADDR_OBJ(o)[0] = TheTypeExternalGLPKProblem;

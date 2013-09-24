@@ -1,6 +1,4 @@
-#! @Description
-#!   Insert documentation for you function here
-DeclareGlobalFunction( "GLPKInterface_Example" );
+
 
 
 GLPKExternalObjectFamily := NewFamily( "ExternalGLPKObjectFamily" );

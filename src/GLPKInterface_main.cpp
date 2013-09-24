@@ -22,20 +22,24 @@ static const char * Revision_glpk_main_c =
 
 #include "GLPK_data.h"
 
-
-
 using std::cerr;
 using std::endl;
 using std::string;
 using std::map;
 using std::pair;
 
+Obj TheTypeExternalGLPKObject;
+Obj TheTypeExternalGLPKProblem;
 
 Obj FuncDummyFunc( Obj self ) {
   
   glp_prob * test = glp_create_prob();
   
-  return INTOBJ_INT( 0 );
+  Obj ret_val = NewGLPKProblem( T_GLPK_EXTERNAL_PROBLEM );
+  
+  GLPKOBJ_SET_PROBOBJ(ret_val, test);
+  
+  return ret_val;
 
 }
 
@@ -72,7 +76,16 @@ static Int InitKernel ( StructInitInfo *module )
 //     InitFreeFuncBag(T_POLYMAKE, &ExternalPolymakeObjectFreeFunc);
 //     TypeObjFuncs[T_POLYMAKE] = &ExternalPolymakeObjectTypeFunc;
 
-
+    InitCopyGVar( "TheTypeExternalGLPKObject", &TheTypeExternalGLPKObject );
+    InitCopyGVar( "TheTypeExternalGLPKProblem", &TheTypeExternalGLPKProblem );
+    
+    InfoBags[T_SPARE1].name = "ExternalGLPKObject";
+    InitMarkFuncBags(T_SPARE1, &MarkOneSubBags);
+    InitFreeFuncBag(T_SPARE1, &ExternalGLPKObjectFreeFunc);
+    TypeObjFuncs[T_SPARE1] = &ExternalGLPKObjectTypeFunc;
+    
+    InitGVarFuncsFromTable(GVarFuncs);
+    
     /* return success                                                      */
     return 0;
 }
@@ -105,14 +118,6 @@ static Int InitLibrary ( StructInitInfo *module )
 //     }
 
     
-    InitCopyGVar( "TheTypeExternalGLPKProblem", &TheTypeExternalGLPKProblem );
-    
-    InfoBags[T_SPARE1].name = "ExternalGLPKAObject";
-    InitMarkFuncBags(T_SPARE1, &MarkOneSubBags);
-    InitFreeFuncBag(T_SPARE1, &ExternalGLPKObjectFreeFunc);
-    TypeObjFuncs[T_SPARE1] = &ExternalGLPKObjectTypeFunc;
-    
-    InitGVarFuncsFromTable(GVarFuncs);
     /* return success                                                      */
     return 0;
 }
