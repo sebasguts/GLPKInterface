@@ -145,6 +145,12 @@ Obj FuncGLPK_OPTIMAL_SOLUTION( Obj self, Obj problem ){
     
 }
 
+Obj FuncGLPK_GET_NUMBER_OF_COLUMNS( Obj self, Obj problem ){
+    
+    return real_GLPK_get_col_number( problem );
+    
+}
+
 
 /******************************************************************************
 *V  GVarFuncs . . . . . . . . . . . . . . . . . . list of functions to export
@@ -222,6 +228,10 @@ static StructGVarFunc GVarFuncs [] = {
     { "GLPK_OPTIMAL_SOLUTION", 1, "problem",
     (Obj(*)())FuncGLPK_OPTIMAL_SOLUTION,
     "GLPKInterface_main.cpp:GLPK_OPTIMAL_SOLUTION" },
+    
+    { "GLPK_GET_NUMBER_OF_COLUMNS", 1, "problem",
+    (Obj(*)())FuncGLPK_GET_NUMBER_OF_COLUMNS,
+    "GLPKInterface_main.cpp:GLPK_GET_NUMBER_OF_COLUMNS" },
     
   { 0 }
 };

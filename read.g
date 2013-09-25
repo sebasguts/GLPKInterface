@@ -8,3 +8,5 @@ fi;
 if (not IsBound(GLPK_CREATE_PROBLEM)) then
     Error( "Failed to load compiled dynamic module.\n" );
 fi;
+
+ReadPackage( "GLPKInterface", "gap/GLPKExtendedFunctions.gi" );

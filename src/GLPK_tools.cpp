@@ -227,6 +227,16 @@ Obj real_GLPK_optimal_solution( Obj problem_obj ){
   
 }
 
+Obj real_GLPK_get_col_number( Obj problem_obj ){
+  
+  glp_prob* problem = convert_and_check_probobj( problem_obj );
+  
+  int nr_cols = glp_get_num_cols( problem );
+  
+  return INTOBJ_INT( nr_cols );
+  
+}
+
 
 // Non-transvered tool functions
 

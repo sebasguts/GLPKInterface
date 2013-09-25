@@ -24,6 +24,8 @@ Obj real_GLPK_optimal_value( Obj );
 
 Obj real_GLPK_optimal_solution( Obj );
 
+Obj real_GLPK_get_col_number( Obj );
+
 //non-transvered tool functions
 
 glp_prob* convert_and_check_probobj( Obj );
