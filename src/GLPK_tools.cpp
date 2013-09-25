@@ -282,7 +282,7 @@ Obj real_GLPK_solve_integer_problem( Obj problem_obj, bool presolver ){
   
 }
 
-Obj real_GLPK_solve_problem_simplex( Obj problem_obj, bool presolver ){
+Obj real_GLPK_solve_problem_simplex( Obj problem_obj ){
   
   glp_prob* problem = convert_and_check_probobj( problem_obj );
   

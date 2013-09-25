@@ -30,7 +30,7 @@ InstallGlobalFunction( GLPK_SET_OBJECT_COEFFS_AS_LIST,
     
     for i in [ 1 .. Length( coeff_list ) ] do
         
-        GLPK_SET_OBJECT_COEFF( problem, coeff_list[ i ] );
+        GLPK_SET_OBJECT_COEFF( problem, i, coeff_list[ i ] );
         
     od;
     
