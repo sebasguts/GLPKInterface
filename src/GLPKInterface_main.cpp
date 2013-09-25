@@ -51,7 +51,13 @@ Obj FuncGLPK_ADD_ROWS( Obj self, Obj problem, Obj rows ){
 
 Obj FuncGLPK_ADD_COLUMNS( Obj self, Obj problem, Obj cols ){
     
-    return real_GLPK_add_columns( problem, cols );
+    return real_GLPK_add_columns( problem, cols, true );
+    
+}
+
+Obj FuncGLPK_ADD_COLUMNS_FLOAT( Obj self, Obj problem, Obj cols ){
+    
+    return real_GLPK_add_columns( problem, cols, false );
     
 }
 
@@ -129,7 +135,19 @@ Obj FuncGLPK_SET_COEFF_MATRIX( Obj self, Obj problem, Obj matrix ){
 
 Obj FuncGLPK_SOLVE_PROBLEM( Obj self, Obj problem ){
     
-    return real_GLPK_solve_problem( problem );
+    return real_GLPK_solve_integer_problem( problem, false );
+    
+}
+
+Obj FuncGLPK_SOLVE_PROBLEM_WITH_PRESOLVE( Obj self, Obj problem ){
+    
+    return real_GLPK_solve_integer_problem( problem, true );
+    
+}
+
+Obj FuncGLPK_SOLVE_PROBLEM_SIMPLEX( Obj self, Obj problem ){
+    
+    return real_GLPK_solve_problem_simplex( problem );
     
 }
 
@@ -142,6 +160,18 @@ Obj FuncGLPK_OPTIMAL_VALUE( Obj self, Obj problem ){
 Obj FuncGLPK_OPTIMAL_SOLUTION( Obj self, Obj problem ){
     
     return real_GLPK_optimal_solution( problem );
+    
+}
+
+Obj FuncGLPK_OPTIMAL_VALUE_FLOAT( Obj self, Obj problem ){
+    
+    return real_GLPK_optimal_value_float( problem );
+    
+}
+
+Obj FuncGLPK_OPTIMAL_SOLUTION_FLOAT( Obj self, Obj problem ){
+    
+    return real_GLPK_optimal_solution_float( problem );
     
 }
 
@@ -168,6 +198,10 @@ static StructGVarFunc GVarFuncs [] = {
     { "GLPK_ADD_COLUMNS", 2, "problem,cols",
     (Obj(*)())FuncGLPK_ADD_COLUMNS,
     "GLPKInterface_main.cpp:GLPK_ADD_COLUMNS" },
+    
+    { "GLPK_ADD_COLUMNS_FLOAT", 2, "problem,cols",
+    (Obj(*)())FuncGLPK_ADD_COLUMNS_FLOAT,
+    "GLPKInterface_main.cpp:GLPK_ADD_COLUMNS_FLOAT" },
     
     { "GLPK_SET_MAX_PROBLEM", 1, "problem",
     (Obj(*)())FuncGLPK_SET_MAX_PROBLEM,
@@ -221,13 +255,29 @@ static StructGVarFunc GVarFuncs [] = {
     (Obj(*)())FuncGLPK_SOLVE_PROBLEM,
     "GLPKInterface_main.cpp:GLPK_SOLVE_PROBLEM" },
     
+    { "GLPK_SOLVE_PROBLEM_WITH_PRESOLVE", 1, "problem",
+    (Obj(*)())FuncGLPK_SOLVE_PROBLEM_WITH_PRESOLVE,
+    "GLPKInterface_main.cpp:GLPK_SOLVE_PROBLEM_WITH_PRESOLVE" },
+    
+    { "GLPK_SOLVE_PROBLEM_SIMPLEX", 1, "problem",
+    (Obj(*)())FuncGLPK_SOLVE_PROBLEM_SIMPLEX,
+    "GLPKInterface_main.cpp:GLPK_SOLVE_PROBLEM_SIMPLEX" },
+    
     { "GLPK_OPTIMAL_VALUE", 1, "problem",
     (Obj(*)())FuncGLPK_OPTIMAL_VALUE,
     "GLPKInterface_main.cpp:GLPK_OPTIMAL_VALUE" },
     
+    { "GLPK_OPTIMAL_VALUE_FLOAT", 1, "problem",
+    (Obj(*)())FuncGLPK_OPTIMAL_VALUE_FLOAT,
+    "GLPKInterface_main.cpp:GLPK_OPTIMAL_VALUE_FLOAT" },
+    
     { "GLPK_OPTIMAL_SOLUTION", 1, "problem",
     (Obj(*)())FuncGLPK_OPTIMAL_SOLUTION,
     "GLPKInterface_main.cpp:GLPK_OPTIMAL_SOLUTION" },
+    
+    { "GLPK_OPTIMAL_SOLUTION_FLOAT", 1, "problem",
+    (Obj(*)())FuncGLPK_OPTIMAL_SOLUTION_FLOAT,
+    "GLPKInterface_main.cpp:GLPK_OPTIMAL_SOLUTION_FLOAT" },
     
     { "GLPK_GET_NUMBER_OF_COLUMNS", 1, "problem",
     (Obj(*)())FuncGLPK_GET_NUMBER_OF_COLUMNS,
