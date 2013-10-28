@@ -1,7 +1,7 @@
 /***************************************************************************
 **
-**  polymake_main.cpp       Sebastian Gutsche       A file to provide Polymake
-**                                                  to GAP.
+**  GLPK_Interface_main.cpp   Sebastian Gutsche   A package for linear 
+**                                                programming, using GLPK.
 **
 */
 
